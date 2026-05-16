@@ -1,5 +1,5 @@
 # Clion
 /.idea/
-/cmake-build-debug/
+/cmake-build-debug-qt_mingw/
 # Qt Creator
 /build/

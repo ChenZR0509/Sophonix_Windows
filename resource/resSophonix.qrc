@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/ico">
+        <file>image/logo.ico</file>
+        <file>image/logo2.ico</file>
+    </qresource>
+    <qresource prefix="/otf">
+        <file>font/GenericTechno.otf</file>
+    </qresource>
+    <qresource prefix="/png"/>
+    <qresource prefix="/svg">
+        <file>image/Logo.svg</file>
+    </qresource>
+    <qresource prefix="/wav">
+        <file>music/menuSelect.wav</file>
+    </qresource>
+</RCC>

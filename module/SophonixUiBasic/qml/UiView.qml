@@ -1,50 +1,47 @@
 /**
- * @file Main.qml
- * @brief 程序UI主接口
+ * @file UiView.h
+ * @brief 视图加载器
  * @author ChenZR
+ * @note:
+ *  1、view内容按需提供onDuplicate函数、onExit函数、onEnter函数
  */
 /* Import" "------------------------------------------------------------------*/
-import SophonixUi 1.0
-import SophonixUiBasic 1.0
 /* Import< >------------------------------------------------------------------*/
 import QtQuick
+import QtQuick.Controls
 /* Root ----------------------------------------------------------------------*/
-Window {
+Control{
   id: root
   /* Property Definition------------------------------------------------------------------*/
+  property alias viewloader: loader
+  property Component viewContent: null
   /* Property Setting------------------------------------------------------------------*/
-  width: SizeScheme.windowWidth
-  height: SizeScheme.windowHeight
-  visible: true
-  title: "智子系统"
-  color: ColorScheme.background
-  flags: Qt.Window | Qt.FramelessWindowHint
   /* Object Definition------------------------------------------------------------------*/
-  //1、应用程序的鼠标拖拽移动
-  MouseArea{
-    anchors.fill: parent
-    onPressed: function(mouse) {
-      if (mouse.button === Qt.LeftButton) {
-        root.startSystemMove()
-      }
-    }
-  }
-  //2、窗口加载器
-  UiView{
-    anchors.fill: parent
-    viewContent: windowStyle
-    background: Rectangle{
-      color: ColorScheme.transparent
-    }
-  }
-  Component {
-    id: windowStyle
-    UiWindow {
-      anchors.fill: parent
-    }
+  contentItem: Loader {
+    id: loader
+    sourceComponent: viewContent
   }
   /* Function Definition------------------------------------------------------------------*/
   /* Signal Definition------------------------------------------------------------------*/
+  signal changeView(Component view)
   /* Slots Definition------------------------------------------------------------------*/
+  onChangeView: view => {
+    if(!view) return;
+    if(view === viewContent)
+    {
+      if(loader.item && loader.item.onDuplicate)
+        loader.item.onDuplicate()
+      return
+    }
+    if(loader.item && loader.item.onExit)
+    {
+      loader.item.onExit()
+    }
+    viewContent = view
+    if(loader.item && loader.item.onEnter)
+    {
+      loader.item.onEnter()
+    }
+  }
   /* Connection Definition------------------------------------------------------------------*/
 }

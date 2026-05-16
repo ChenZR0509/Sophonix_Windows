@@ -1,47 +1,40 @@
 /**
- * @file Main.qml
- * @brief 程序UI主接口
+ * @file UiText
+ * @brief 文本原型
  * @author ChenZR
+ * @details
  */
 /* Import" "------------------------------------------------------------------*/
-import SophonixUi 1.0
-import SophonixUiBasic 1.0
 /* Import< >------------------------------------------------------------------*/
 import QtQuick
+import QtQuick.Controls
 /* Root ----------------------------------------------------------------------*/
-Window {
+Control{
   id: root
   /* Property Definition------------------------------------------------------------------*/
+  property alias textObject: textObject
+  property string textContent: ""
+  property string textFamily: ""
+  property int textSize: 18
+  property color textColor: uiColor.white
   /* Property Setting------------------------------------------------------------------*/
-  width: SizeScheme.windowWidth
-  height: SizeScheme.windowHeight
-  visible: true
-  title: "智子系统"
-  color: ColorScheme.background
-  flags: Qt.Window | Qt.FramelessWindowHint
+  implicitWidth: textObject.implicitWidth
+  contentItem: textObject
   /* Object Definition------------------------------------------------------------------*/
-  //1、应用程序的鼠标拖拽移动
-  MouseArea{
-    anchors.fill: parent
-    onPressed: function(mouse) {
-      if (mouse.button === Qt.LeftButton) {
-        root.startSystemMove()
-      }
-    }
-  }
-  //2、窗口加载器
-  UiView{
-    anchors.fill: parent
-    viewContent: windowStyle
-    background: Rectangle{
-      color: ColorScheme.transparent
-    }
-  }
-  Component {
-    id: windowStyle
-    UiWindow {
-      anchors.fill: parent
-    }
+  Text{
+    id: textObject
+    padding: 0
+    text: textContent
+    font.family: textFamily
+    font.pixelSize: textSize
+    color: textColor
+    // note 常用配置
+    // font.bold: true
+    // font.italic: false
+    // font.letterSpacing: 0
+    // horizontalAlignment: Text.AlignHCenter
+    // verticalAlignment: Text.AlignVCenter
+    //
   }
   /* Function Definition------------------------------------------------------------------*/
   /* Signal Definition------------------------------------------------------------------*/

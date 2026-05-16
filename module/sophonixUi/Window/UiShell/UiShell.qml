@@ -1,49 +1,49 @@
 /**
- * @file Main.qml
- * @brief 程序UI主接口
+ * @file UiShell.qml
+ * @brief 终端
  * @author ChenZR
+ * @details
  */
 /* Import" "------------------------------------------------------------------*/
-import SophonixUi 1.0
 import SophonixUiBasic 1.0
+import SophonixUiComponent 1.0
 /* Import< >------------------------------------------------------------------*/
 import QtQuick
+import QtQuick.Shapes
+import QtQuick.Controls
+import QtQuick.Controls.Basic
 /* Root ----------------------------------------------------------------------*/
-Window {
+Control {
   id: root
   /* Property Definition------------------------------------------------------------------*/
+  property int viewState: UiDataType.ViewExit   //组件状态
   /* Property Setting------------------------------------------------------------------*/
-  width: SizeScheme.windowWidth
-  height: SizeScheme.windowHeight
-  visible: true
-  title: "智子系统"
-  color: ColorScheme.background
-  flags: Qt.Window | Qt.FramelessWindowHint
+  padding: 3*SizeScheme.mediumConner
+  background: UiShellBackground{
+    id: cliBackground
+    viewState: root.viewState
+    onEnterFinished: {
+      cliContent.enter()
+    }
+  }
+  contentItem: UiShellSurface{
+    id: cliContent
+    width: availableWidth
+    height: availableHeight
+  }
   /* Object Definition------------------------------------------------------------------*/
-  //1、应用程序的鼠标拖拽移动
-  MouseArea{
-    anchors.fill: parent
-    onPressed: function(mouse) {
-      if (mouse.button === Qt.LeftButton) {
-        root.startSystemMove()
-      }
-    }
-  }
-  //2、窗口加载器
-  UiView{
-    anchors.fill: parent
-    viewContent: windowStyle
-    background: Rectangle{
-      color: ColorScheme.transparent
-    }
-  }
-  Component {
-    id: windowStyle
-    UiWindow {
-      anchors.fill: parent
-    }
-  }
   /* Function Definition------------------------------------------------------------------*/
+  // onEnter 入场
+  function onEnter() {
+    root.viewState = UiDataType.ViewEnter
+    root.forceActiveFocus()
+  }
+  function onExit() {
+    root.viewState = UiDataType.ViewExit
+  }
+  function onDuplicate() {
+    root.viewState = UiDataType.ViewDuplicate
+  }
   /* Signal Definition------------------------------------------------------------------*/
   /* Slots Definition------------------------------------------------------------------*/
   /* Connection Definition------------------------------------------------------------------*/

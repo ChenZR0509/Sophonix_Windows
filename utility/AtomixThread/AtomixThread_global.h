@@ -1,0 +1,12 @@
+#ifndef ATOMIXTHREAD_GLOBAL_H
+#define ATOMIXTHREAD_GLOBAL_H
+
+#include <QtCore/qglobal.h>
+
+#if defined(ATOMIXTHREAD_LIBRARY)
+#define ATOMIXTHREAD_EXPORT Q_DECL_EXPORT
+#else
+#define ATOMIXTHREAD_EXPORT Q_DECL_IMPORT
+#endif
+
+#endif // ATOMIXTHREAD_GLOBAL_H
