@@ -7,12 +7,14 @@
 #include "runnableThread.h"
 /* Includes< >------------------------------------------------------------------*/
 #include <atomic>
+#include <QDebug>
 /* Namespace------------------------------------------------------------------*/
 namespace Atomic::Thread
 {
 
 RunnableThread::RunnableThread(QObject *parent)
 {
+
 }
 
 RunnableThread::~RunnableThread()

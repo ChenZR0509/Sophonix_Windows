@@ -23,9 +23,4 @@ ShellInterface::~ShellInterface()
     ;
 }
 
-ShellModelManager *ShellInterface::getShellModelManager() const
-{
-    return shellModelManager;
-}
-
 }

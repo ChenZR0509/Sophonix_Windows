@@ -12,9 +12,9 @@ namespace Sophonix::Ui
 
 UiWindowInterface::UiWindowInterface(QQmlApplicationEngine *engine, QObject *parent)
     : qmlEngine{engine}, QObject(parent),
-    uiShellInterface{new UiShellInterface(qmlEngine, this)}
+    shellInterface{new ShellInterface(qmlEngine, qmlEngine)}
 {
-
+    qmlEngine->rootContext()->setContextProperty("sophonixShell", shellInterface->shellModelManager);
 }
 
 UiWindowInterface::~UiWindowInterface()

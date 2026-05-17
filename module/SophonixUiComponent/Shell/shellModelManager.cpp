@@ -24,7 +24,7 @@ ShellModelManager::~ShellModelManager()
 
 int ShellModelManager::addModel()
 {
-    ShellOutputModel* model = new ShellOutputModel(this);
+    ShellModel* model = new ShellModel(this);
     models.append(model);
     return models.count()-1;
 }
@@ -36,12 +36,12 @@ void ShellModelManager::removeModel(int id)
         return;
     }
 
-    ShellOutputModel* model = models.at(id);
+    ShellModel* model = models.at(id);
     models.remove(id);
     model->deleteLater();
 }
 
-ShellOutputModel* ShellModelManager::getModel(int id)
+ShellModel* ShellModelManager::getModel(int id)
 {
     if (id >= models.count()|| id < 0)
     {
@@ -49,4 +49,15 @@ ShellOutputModel* ShellModelManager::getModel(int id)
     }
     return models[id];
 }
+
+void ShellModelManager::appendData(const ShellModel::LogInfo &data, int id)
+{
+    if (id >= models.count()|| id < 0)
+    {
+        return;
+    }
+    models[id]->appendData(data);
+}
+
+
 }

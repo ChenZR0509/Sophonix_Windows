@@ -1,7 +1,6 @@
 cmake_minimum_required(VERSION 3.16)
 
-project(AtomixCli LANGUAGES CXX)
-
+project(AtomixCli LANGUAGES C CXX)
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
@@ -21,11 +20,10 @@ add_library(AtomixCli SHARED
   ./src/cliCommand.c
   ./src/cliPipeline.c
   AtomixCli_global.h
-  atomixcli.cpp
-  atomixcli.h
 )
 
 target_link_libraries(AtomixCli PRIVATE Qt${QT_VERSION_MAJOR}::Core)
+target_link_libraries(AtomixCli PRIVATE AtomixThread)
 
 target_compile_definitions(AtomixCli PRIVATE ATOMIXCLI_LIBRARY)
 

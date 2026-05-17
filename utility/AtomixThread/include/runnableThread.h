@@ -24,7 +24,7 @@ public:
      *
      * @param[in] parent 对象树父节点
      */
-    explicit RunnableThread(QObject* parent);
+    explicit RunnableThread(QObject* parent = nullptr);
     /**
      * @name ~RunnableThread
      * @brief 析构函数

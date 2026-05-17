@@ -23,7 +23,7 @@ FocusScope {
   Shell{
     id: shell
     anchors.fill: parent
-    modelManager: sophonixShell.shellModelManager
+    modelManager: sophonixShell
   }
   /* Function Definition------------------------------------------------------------------*/
   function enter(){

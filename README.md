@@ -28,19 +28,38 @@
   - main.cpp
   - Main.qml
 
-## 第三部分	模块架构
+## 第三部分	类结构
 
-### 第一章	SophonixCore模块
-
-- 类关系：
-
-  ```mermaid
-  classDiagram
-    class SophonixCore {
-      -QQmlApplicationEngine* qmlEngine
-      -Interface*  qmlInterface
-    }
-  ```
-
-  
+```mermaid
+classDiagram
+  class SophonixCore {
+    -Interface*  qmlInterface
+  }
+  class Interface {
+    -UiWindowInterface*  windowInterface
+  }
+  class UiWindowInterface {
+    -UiShellInterface* uiShellInterface
+  }
+  class UiShellInterface {
+    -ShellInterface* shellInterface
+  }
+  class ShellInterface {
+    -ShellModelManager* shellModelManager
+    +setContextProperty() sophonixShell(QML OBJECT)
+  }
+  class ShellModelManager {
+    QVector<ShellOutputModel*> models
+  }
+  class ShellModel {
+    uint16_t maxDataCount
+    QVector<LogInfo> dataItems
+  }  
+  SophonixCore *-- Interface
+  Interface *-- UiWindowInterface
+  UiWindowInterface *-- UiShellInterface
+  UiShellInterface *-- ShellInterface
+  ShellInterface *-- ShellModelManager
+  ShellModelManager *-- ShellModel
+```
 

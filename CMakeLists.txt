@@ -70,3 +70,4 @@ target_link_libraries(appSophonix
 
 add_subdirectory(utility/AtomixCli)
 add_subdirectory(utility/AtomixThread)
+add_subdirectory(module/SophonixShell)

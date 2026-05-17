@@ -5,7 +5,7 @@
  * @author ChenZR
  */
 /* Includes" "------------------------------------------------------------------*/
-#include "shellOutputModel.h"
+#include "shellModel.h"
 /* Includes< >------------------------------------------------------------------*/
 #include <qqml.h>
 #include <QAbstractListModel>
@@ -31,7 +31,7 @@ public:
     ~ShellModelManager();
 private:
     /// models shell模型
-    QVector<ShellOutputModel*> models {};
+    QVector<ShellModel*> models {};
 public:
     /**
      * @name addModel
@@ -53,6 +53,14 @@ public:
      *
      * @param[in] id 待读取模型id
      */
-    Q_INVOKABLE ShellOutputModel* getModel(int id);
+    Q_INVOKABLE ShellModel* getModel(int id);
+    /**
+     * @name appendData
+     * @brief 添加数据
+     *
+     * @param[in] data shell数据结构体
+     * @param[out] id 模型id
+     */
+    Q_INVOKABLE void appendData(const ShellModel::LogInfo& data, int id);
 };
 }

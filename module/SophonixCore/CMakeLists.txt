@@ -18,15 +18,20 @@ find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS
 add_library(SophonixCore STATIC
   sophonixCore.h
   sophonixCore.cpp
+  ./include/timeLimiter.h
+  ./src/timeLimiter.cpp
   ./include/interface.h
   ./src/interface.cpp
+  ./include/uiRefresh.h
+  ./src/uiRefresh.cpp
 )
 
 target_link_libraries(SophonixCore
   PRIVATE Qt${QT_VERSION_MAJOR}::Core
   PRIVATE Qt${QT_VERSION_MAJOR}::Quick)
 target_link_libraries(SophonixCore
-  PUBLIC SophonixUi)
+  PUBLIC SophonixUi
+  PUBLIC AtomixThread)
 
 
 target_compile_definitions(SophonixCore PRIVATE SOPHONIXCORE_LIBRARY)

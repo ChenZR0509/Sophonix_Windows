@@ -21,8 +21,8 @@ qt_add_qml_module(SophonixUiComponent
     SOURCES
         ./Shell/shellInterface.h
         ./Shell/shellInterface.cpp
-        ./Shell/shellOutputModel.h
-        ./Shell/shellOutputModel.cpp
+        ./Shell/shellModel.h
+        ./Shell/shellModel.cpp
         ./Shell/shellModelManager.h
         ./Shell/shellModelManager.cpp
 )

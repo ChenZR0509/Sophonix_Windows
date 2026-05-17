@@ -5,10 +5,12 @@
  * @author ChenZR
  */
 /* Includes" "------------------------------------------------------------------*/
+#include "uiRefresh.h"
 #include "interface.h"
 /* Includes< >------------------------------------------------------------------*/
 #include <QObject>
 #include <QQmlContext>
+#include <QThreadPool>
 #include <QQmlApplicationEngine>
 /* NameSpace------------------------------------------------------------------*/
 namespace Sophonix
@@ -32,6 +34,8 @@ public:
 private:
     /// qmlEngine 前端引擎
     QQmlApplicationEngine* qmlEngine = nullptr;
+    /// uiRefresh qml刷新器
+    UiRefresh* qmlRefresh = nullptr;
     /// qmlInterface 前后端接口
     Interface* qmlInterface = nullptr;
 private:

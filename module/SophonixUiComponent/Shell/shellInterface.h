@@ -33,11 +33,8 @@ public:
 private:
     /// qmlEngine 前端引擎
     QQmlApplicationEngine* qmlEngine = nullptr;
+public:
     /// shellModelManager shell 输出模型
     ShellModelManager* shellModelManager = nullptr;
-private:
-    Q_PROPERTY(ShellModelManager* shellModelManager READ getShellModelManager CONSTANT FINAL)
-public:
-    ShellModelManager *getShellModelManager() const;
 };
 }

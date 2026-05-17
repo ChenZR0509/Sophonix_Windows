@@ -21,8 +21,6 @@ qt_add_qml_module(SophonixUi
     SOURCES
         ./Window/UiWindowInterface.h
         ./Window/UiWindowInterface.cpp
-        ./Window/UiShell/uiShellInterface.h
-        ./Window/UiShell/uiShellInterface.cpp
 )
 
 set_target_properties(SophonixUi PROPERTIES

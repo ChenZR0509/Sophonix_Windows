@@ -5,7 +5,7 @@
  * @author ChenZR
  */
 /* Includes" "------------------------------------------------------------------*/
-#include "UiShell/uiShellInterface.h"
+#include "shellInterface.h"
 /* Includes< >------------------------------------------------------------------*/
 #include <QObject>
 #include <QQmlContext>
@@ -16,6 +16,8 @@ namespace Sophonix::Ui
 class UiWindowInterface: public QObject
 {
     Q_OBJECT
+public:
+    using ShellInterface = Sophonix::Ui::Component::ShellInterface;
 public:
     /**
      * @name UiWindowInterface
@@ -33,7 +35,7 @@ public:
 private:
     /// qmlEngine 前端引擎
     QQmlApplicationEngine* qmlEngine = nullptr;
-    /// uiShellInterface uiShell接口
-    UiShellInterface* uiShellInterface = nullptr;
+    /// ShellInterface uiShell接口
+    ShellInterface* shellInterface = nullptr;
 };
 }

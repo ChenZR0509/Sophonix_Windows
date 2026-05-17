@@ -11,23 +11,23 @@
 /* NameSpace------------------------------------------------------------------*/
 namespace Sophonix::Ui::Component
 {
-class ShellOutputModel: public QAbstractListModel
+class ShellModel: public QAbstractListModel
 {
     Q_OBJECT
     QML_ELEMENT
 public:
     /**
-     * @name ShellOutputModel
+     * @name ShellModel
      * @brief 构造函数
      *
      * @param[in] parent 对象树父节点
      */
-    explicit ShellOutputModel(QObject *parent = nullptr);
+    explicit ShellModel(QObject *parent = nullptr);
     /**
-     * @name ~ShellOutputModel
+     * @name ~ShellModel
      * @brief 析构函数
      */
-    ~ShellOutputModel();
+    ~ShellModel();
 public:
     enum Roles
     {
@@ -43,10 +43,6 @@ public:
         LevelColumn,
         ContentColumn
     };
-private:
-    /// maxDataCount 最大历史数据容量
-    uint16_t maxDataCount {500};
-    ///
     typedef struct LogInfo
     {
         QString name;
@@ -54,8 +50,15 @@ private:
         QString level;
         QString content;
     }LogInfo;
+private:
+    /// maxDataCount 最大历史数据容量
+    uint16_t maxDataCount {500};
     /// dataItems 数据内容
     QVector<LogInfo> dataItems {};
+    /// startIndex 最旧数据位置
+    int startIndex = 0;
+    /// currentSize 当前有效数据数量
+    int currentSize = 0;
 public:
     /**
      * @name rowCount
@@ -108,20 +111,5 @@ public:
      * @brief 清除数据
      */
     void clearData();
-    /**
-     * @name insertData
-     * @brief 插入数据
-     *
-     * @param[in] row 待插入行数
-     * @param[out] data 待插入数据
-     */
-    void insertData(int row, const LogInfo& data);
-    /**
-     * @name removeLine
-     * @brief 移除数据
-     *
-     * @param[in] row 待移除行数
-     */
-    void removeLine(int row);
 };
 }
